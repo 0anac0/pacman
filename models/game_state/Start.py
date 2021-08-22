@@ -1,5 +1,5 @@
-from models.state.State import State
-from models.state.Playing import Playing
+from models.game_state.State import State
+from models.game_state.Playing import Playing
 from helper import *
 from settings import *
 import pygame

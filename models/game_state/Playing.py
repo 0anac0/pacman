@@ -1,4 +1,4 @@
-from models.state.State import State
+from models.game_state.State import State
 from helper import *
 from settings import *
 import pygame

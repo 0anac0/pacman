@@ -2,7 +2,7 @@ import pygame
 import sys
 from settings import *
 from helper import *
-from models.state.Start import Start
+from models.game_state.Start import Start
 pygame.init()
 vec = pygame.math.Vector2
 
