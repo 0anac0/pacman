@@ -14,6 +14,7 @@ class App:
         self.running = True
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
+        print(GRID.walls)
 
     def update_state(self, new_state):
         self.state = new_state

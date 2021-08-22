@@ -14,6 +14,10 @@ def draw_text(text, screen, size, color, font_name, pos, centered=True):
     screen.blit(text, (pos_x, pos_y))
 
 
+def completed_current_square(val):
+    return val == 0 or abs(GRID_DIMENSION - val) <= 1
+
+
 def draw_grid(screen, cell_dimensions):
     cell_width, cell_height = cell_dimensions
     for x in range(WIDTH//cell_width):

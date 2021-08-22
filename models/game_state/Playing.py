@@ -23,7 +23,7 @@ class Playing(State):
                     self.player.move(vec(0, 1))
 
     def update(self):
-        pass
+        self.player.update()
 
     def draw(self):
         self.screen.fill(BLACK)
@@ -32,5 +32,7 @@ class Playing(State):
         draw_text('CURRENT SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
         draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
         self.player.draw()
+        #for wall in GRID.walls:
+        #    pygame.draw.circle(self.app.screen, WHITE, (wall.x*GRID_DIMENSION+MARGIN//2+GRID_DIMENSION//2,wall.y*GRID_DIMENSION+MARGIN//2+GRID_DIMENSION//2),  GRID_DIMENSION//2)
         pygame.display.update()
 

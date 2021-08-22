@@ -1,5 +1,6 @@
 import pygame
 from pygame.math import Vector2 as vec
+from models.Grid import Grid
 
 # tamanho da tela
 WIDTH, HEIGHT = 560, 620
@@ -24,3 +25,6 @@ START_TEXT_SIZE = 28
 
 # background
 BACKGROUND = pygame.transform.scale(pygame.image.load('maze.png'), (WIDTH, HEIGHT))
+
+# grid
+GRID = Grid('grid.txt')
