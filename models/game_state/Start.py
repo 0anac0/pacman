@@ -6,25 +6,21 @@ import pygame
 
 
 class Start(State):
-    def __init__(self, screen):
-        super().__init__(screen=screen)
+    def __init__(self, app):
+        super().__init__(app=app)
 
     def events(self):
-        state = self
-        running = True
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                self.app.update_running(False)
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-                state = Playing(self.screen)
-
-        return (running, state)
+                self.app.update_state(Playing(self.app))
 
     def update(self):
         pass
 
     def draw(self):
-        self.screen.fill(BLACK)
+        self.app.screen.fill(BLACK)
 
         texts = [
             ['INTELIGENCIA ARTIFICIAL PARA JOGOS', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 200)],

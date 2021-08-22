@@ -1,19 +1,19 @@
 import pygame
 import sys
-from settings import *
 from helper import *
 from models.game_state.Start import Start
+from models.Player import Player
 pygame.init()
 vec = pygame.math.Vector2
 
 
 class App:
     def __init__(self):
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        self.screen = pygame.display.set_mode((WIDTH + MARGIN, HEIGHT + MARGIN))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.state = Start(self.screen)
-        self.load()
+        self.state = Start(self)
+        self.player = Player(self, PLAYER_START_POS)
 
     def update_state(self, new_state):
         self.state = new_state
@@ -24,7 +24,7 @@ class App:
     def run(self):
         while self.running:
             if self.state:
-                self.running, self.state = self.state.events()
+                self.state.events()
                 self.state.draw()
                 self.state.update()
             else:
@@ -32,7 +32,3 @@ class App:
             self.clock.tick(FPS)
         pygame.quit()
         sys.exit()
-
-    def load(self):
-        self.background = pygame.image.load('maze.png')
-        self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
