@@ -1,6 +1,5 @@
 from models.game_state.State import State
 from helper import *
-from settings import *
 import pygame
 
 
@@ -23,6 +22,7 @@ class Playing(State):
         pass
 
     def draw(self):
-        self.screen.fill(RED)
-
+        self.screen.blit(BACKGROUND, (0, 0))
+        draw_grid(self.screen, (22, 24))
         pygame.display.update()
+

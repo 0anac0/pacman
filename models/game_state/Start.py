@@ -26,47 +26,22 @@ class Start(State):
     def draw(self):
         self.screen.fill(BLACK)
 
-        draw_text(
-            'INTELIGENCIA ARTIFICIAL PARA JOGOS',
-            self.screen,
-            START_TEXT_SIZE,
-            (30, 100, 130),
-            START_FONT,
-            (WIDTH / 2, HEIGHT / 2 - 200)
-        )
+        texts = [
+            ['INTELIGENCIA ARTIFICIAL PARA JOGOS', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 200)],
+            ['ANA CLAUDIA', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 170)],
+            ['2021.1', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 150)],
+            ['APERTE ESPAÇO PARA INICIAR', (170, 130, 80), (WIDTH / 2, HEIGHT / 2)],
+            ['SOMENTE 1 JOGADOR', (30, 70, 130), (WIDTH / 2, HEIGHT / 2 + 50)],
+        ]
 
-        draw_text(
-            'ANA CLAUDIA',
-            self.screen,
-            START_TEXT_SIZE,
-            (30, 100, 130),
-            START_FONT,
-            (WIDTH / 2, HEIGHT / 2 - 170)
-        )
+        for text in texts:
+            draw_text(
+                text[0],
+                self.screen,
+                START_TEXT_SIZE,
+                text[1],
+                START_FONT,
+                text[2]
+            )
 
-        draw_text(
-            '2021.1',
-            self.screen,
-            START_TEXT_SIZE,
-            (30, 100, 130),
-            START_FONT,
-            (WIDTH / 2, HEIGHT / 2 - 150)
-        )
-        draw_text(
-            'APERTE ESPAÇO PARA INICIAR',
-            self.screen,
-            START_TEXT_SIZE,
-            (170, 130, 80),
-            START_FONT,
-            (WIDTH / 2, HEIGHT / 2)
-        )
-
-        draw_text(
-            'SOMENTE 1 JOGADOR',
-            self.screen,
-            START_TEXT_SIZE,
-            (30, 70, 130),
-            START_FONT,
-            (WIDTH / 2, HEIGHT / 2 + 50)
-        )
         pygame.display.update()

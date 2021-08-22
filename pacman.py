@@ -13,6 +13,7 @@ class App:
         self.clock = pygame.time.Clock()
         self.running = True
         self.state = Start(self.screen)
+        self.load()
 
     def update_state(self, new_state):
         self.state = new_state
@@ -31,3 +32,7 @@ class App:
             self.clock.tick(FPS)
         pygame.quit()
         sys.exit()
+
+    def load(self):
+        self.background = pygame.image.load('maze.png')
+        self.background = pygame.transform.scale(self.background, (WIDTH, HEIGHT))
