@@ -14,8 +14,8 @@ class App:
         self.running = True
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
-        #self.enemies = [Enemy(self, vec(20, 1))]
-        self.enemies = []
+        self.enemies = [Enemy(self, vec(20, 1))]
+        #self.enemies = []
         self.current_score = 0
 
     def increase_score(self, score):

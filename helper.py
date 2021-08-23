@@ -5,6 +5,7 @@ from models.Grid import Grid
 # grid
 GRID = Grid('grid.txt')
 
+
 def draw_text(text, screen, size, color, font_name, pos, centered=True):
     font = pygame.font.SysFont(font_name, size)
     text = font.render(text, False, color)
@@ -17,22 +18,9 @@ def draw_text(text, screen, size, color, font_name, pos, centered=True):
     screen.blit(text, (pos_x, pos_y))
 
 
-def completed_current_square(val):
-    return val == 0 or abs(GRID_DIMENSION - val) <= 1
+def completed_current_square(val, tolerance=0):
+    return val <= tolerance or abs(GRID_DIMENSION - val) <= tolerance
 
-
-def draw_grid(screen):
-    # draw_grid_debug(screen)
-    draw_coins(screen, 3)
-
-
-def draw_coins(screen, coin_radio):
-    for coin in GRID.coins:
-        pygame.draw.circle(
-            screen, WHITE,
-            (coin.x*GRID_DIMENSION+(MARGIN//2) + coin_radio/2 + GRID_DIMENSION//2, coin.y*GRID_DIMENSION+(MARGIN//2) + coin_radio/2 + GRID_DIMENSION//2),
-            coin_radio
-        )
 
 
 def draw_grid_debug(screen):

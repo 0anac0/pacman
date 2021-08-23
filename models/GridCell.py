@@ -10,6 +10,9 @@ class GridCell:
         self.prev = None
         self.wall = wall
 
+    def reset_values(self):
+        self.f, self.g, self.h = 0, 0, 0
+
     def heuristics(self, b):
         return math.sqrt((self.x - b.x) ** 2 + abs(self.y - b.y) ** 2)
 
