@@ -50,7 +50,7 @@ class Player:
 
     def draw(self):
         pygame.draw.circle(self.app.screen, YELLOW, self.pixel_pos,  GRID_DIMENSION//2)
-        self.draw_grid_pos()
+        #self.draw_grid_pos()
         pygame.display.update()
 
     def draw_grid_pos(self):

@@ -18,19 +18,32 @@ def completed_current_square(val):
     return val == 0 or abs(GRID_DIMENSION - val) <= 1
 
 
-def draw_grid(screen, cell_dimensions):
-    cell_width, cell_height = cell_dimensions
-    for x in range(WIDTH//cell_width):
-        pygame.draw.line(
-            screen,
-            GRAY,
-            (x*cell_width + MARGIN//2, MARGIN//2),
-            (x*cell_width + MARGIN//2, HEIGHT + MARGIN//2)
+def draw_grid(screen):
+    # draw_grid_debug(screen)
+    draw_coins(screen, 3)
+
+
+def draw_coins(screen, coin_radio):
+    for coin in GRID.coins:
+        pygame.draw.circle(
+            screen, WHITE,
+            (coin.x*GRID_DIMENSION+(MARGIN//2) + coin_radio/2 + GRID_DIMENSION//2, coin.y*GRID_DIMENSION+(MARGIN//2) + coin_radio/2 + GRID_DIMENSION//2),
+            coin_radio
         )
-    for y in range(HEIGHT//cell_height):
+
+
+def draw_grid_debug(screen):
+    for x in range(WIDTH//GRID_DIMENSION):
         pygame.draw.line(
             screen,
             GRAY,
-            (MARGIN//2, y * cell_height + MARGIN//2),
-            (WIDTH+ MARGIN//2, y * cell_height + MARGIN//2)
+            (x*GRID_DIMENSION + MARGIN//2, MARGIN//2),
+            (x*GRID_DIMENSION + MARGIN//2, HEIGHT + MARGIN//2)
+        )
+    for y in range(HEIGHT//GRID_DIMENSION):
+        pygame.draw.line(
+            screen,
+            GRAY,
+            (MARGIN//2, y * GRID_DIMENSION + MARGIN//2),
+            (WIDTH+ MARGIN//2, y * GRID_DIMENSION + MARGIN//2)
         )

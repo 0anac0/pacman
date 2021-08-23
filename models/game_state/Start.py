@@ -23,11 +23,11 @@ class Start(State):
         self.app.screen.fill(BLACK)
 
         texts = [
-            ['INTELIGENCIA ARTIFICIAL PARA JOGOS', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 200)],
-            ['ANA CLAUDIA', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 170)],
-            ['2021.1', (30, 100, 130), (WIDTH / 2, HEIGHT / 2 - 150)],
-            ['APERTE ESPAÇO PARA INICIAR', (170, 130, 80), (WIDTH / 2, HEIGHT / 2)],
-            ['SOMENTE 1 JOGADOR', (30, 70, 130), (WIDTH / 2, HEIGHT / 2 + 50)],
+            ['INTELIGENCIA ARTIFICIAL PARA JOGOS', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 200)],
+            ['ANA CLAUDIA', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 170)],
+            ['2021.1', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 150)],
+            ['APERTE ESPAÇO PARA INICIAR', (170, 130, 80), (WIDTH / 2 + MARGIN//2, HEIGHT / 2)],
+            ['SOMENTE 1 JOGADOR', (30, 70, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 + 50)],
         ]
 
         for text in texts:

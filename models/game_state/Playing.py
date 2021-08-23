@@ -24,15 +24,16 @@ class Playing(State):
 
     def update(self):
         self.player.update()
+        coin_gained = GRID.check_coins(self.player.grid_pos)
+        if coin_gained:
+            self.app.increase_score(10)
 
     def draw(self):
         self.screen.fill(BLACK)
         self.screen.blit(BACKGROUND, (MARGIN//2, MARGIN//2))
-        draw_grid(self.screen, (GRID_DIMENSION, GRID_DIMENSION))
-        draw_text('CURRENT SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
+        draw_grid(self.screen)
+        draw_text('CURRENT SCORE: '+str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
         draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
         self.player.draw()
-        #for wall in GRID.walls:
-        #    pygame.draw.circle(self.app.screen, WHITE, (wall.x*GRID_DIMENSION+MARGIN//2+GRID_DIMENSION//2,wall.y*GRID_DIMENSION+MARGIN//2+GRID_DIMENSION//2),  GRID_DIMENSION//2)
         pygame.display.update()
 
