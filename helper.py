@@ -1,6 +1,9 @@
 import pygame.font
 from settings import *
+from models.Grid import Grid
 
+# grid
+GRID = Grid('grid.txt')
 
 def draw_text(text, screen, size, color, font_name, pos, centered=True):
     font = pygame.font.SysFont(font_name, size)
@@ -47,3 +50,9 @@ def draw_grid_debug(screen):
             (MARGIN//2, y * GRID_DIMENSION + MARGIN//2),
             (WIDTH+ MARGIN//2, y * GRID_DIMENSION + MARGIN//2)
         )
+
+
+def draw_grid_cells():
+    for i in range(GRID.cols):
+        for j in range(GRID.rows):
+            GRID.cells[i][j].draw()

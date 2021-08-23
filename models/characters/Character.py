@@ -31,7 +31,7 @@ class Character:
             (aux_pixel_pos.x - MARGIN//2 + (GRID_DIMENSION*self.direction.x)//2)//GRID_DIMENSION,
             (aux_pixel_pos.y - MARGIN//2 + (GRID_DIMENSION*self.direction.y)//2)//GRID_DIMENSION
         )
-        return aux_grid_pos not in GRID.walls
+        return not GRID.cells[int(aux_grid_pos.y)][int(aux_grid_pos.x)].wall
 
     def draw(self):
         pass

@@ -14,7 +14,7 @@ class Player(Character):
         if self.stored_direction == self.direction or self.stored_direction is None:
             return
 
-        x_alignment = (self.pixel_pos.x - MARGIN // 2 - GRID_DIMENSION//2 ) % GRID_DIMENSION
+        x_alignment = (self.pixel_pos.x - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
         y_alignment = (self.pixel_pos.y - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
 
         # só atualizar a direção caso o pacman esteja no quadradinho correto
@@ -34,7 +34,7 @@ class Player(Character):
 
     def draw(self):
         pygame.draw.circle(self.app.screen, YELLOW, self.pixel_pos,  GRID_DIMENSION//2)
-        #self.draw_grid_pos()
+        # self.draw_grid_pos()
         pygame.display.update()
 
     def draw_grid_pos(self):
