@@ -24,6 +24,8 @@ class Playing(State):
 
     def update(self):
         self.player.update()
+        for enemy in self.app.enemies:
+            enemy.update()
         coin_gained = GRID.check_coins(self.player.grid_pos)
         if coin_gained:
             self.app.increase_score(10)
@@ -35,5 +37,7 @@ class Playing(State):
         draw_text('CURRENT SCORE: '+str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
         draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
         self.player.draw()
+        for enemy in self.app.enemies:
+            enemy.draw()
         pygame.display.update()
 

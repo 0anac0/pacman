@@ -1,8 +1,8 @@
-import pygame
 import sys
 from helper import *
 from models.game_state.Start import Start
-from models.Player import Player
+from models.characters.Player import Player
+from models.characters.Enemy import Enemy
 pygame.init()
 vec = pygame.math.Vector2
 
@@ -14,6 +14,7 @@ class App:
         self.running = True
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
+        self.enemies = [Enemy(self, vec(20, 1))]
         self.current_score = 0
 
     def increase_score(self, score):
