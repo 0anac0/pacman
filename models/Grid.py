@@ -1,8 +1,6 @@
-import pdb
-
-from pygame.math import Vector2 as vec
 from models.GridCell import GridCell
 from settings import *
+
 
 class Grid:
     def __init__(self, base_file):
@@ -21,7 +19,7 @@ class Grid:
         for coin in self.coins:
             pygame.draw.circle(
                 screen, WHITE,
-                (coin.x * GRID_DIMENSION + MARGIN//2 +coin_radio / 2 + GRID_DIMENSION // 2,
+                (coin.x * GRID_DIMENSION + MARGIN//2 + coin_radio / 2 + GRID_DIMENSION // 2,
                  coin.y * GRID_DIMENSION + MARGIN//2 + coin_radio / 2 + GRID_DIMENSION // 2),
                 coin_radio
             )

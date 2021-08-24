@@ -1,5 +1,3 @@
-import pdb
-
 from models.characters.Character import Character
 from helper import *
 
@@ -7,7 +5,7 @@ from helper import *
 class Enemy(Character):
     def __init__(self, app, pos):
         super().__init__(app=app, pos=pos)
-        self.calculate_path()
+        self.path = []
 
     def calculate_path(self):
         self.path = GRID.a_estrela(self.app.player.grid_pos, self.grid_pos)
@@ -22,11 +20,16 @@ class Enemy(Character):
 
     def update_direction(self):
         if self.time_to_move():
+            self.check_if_player_out_of_path()
             self.calculate_direction()
 
+    def check_if_player_out_of_path(self):
+        player_grid_pos = self.app.player.grid_pos
+        player_cell = GRID.cells[int(player_grid_pos.y)][int(player_grid_pos.x)]
+        if player_cell not in self.path:
+            self.calculate_path()
+
     def calculate_direction(self):
-        #pdb.set_trace()
-        #print(len(self.path))
         if len(self.path) <= 0:
             return
         next_pos = self.path[0]
