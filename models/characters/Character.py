@@ -1,3 +1,5 @@
+import pdb
+
 from helper import *
 
 
@@ -32,24 +34,23 @@ class Character:
     def allowed_movement(self):
         aux_pixel_pos = self.pixel_pos + self.direction
         aux_grid_pos = vec(
-            (aux_pixel_pos.x - MARGIN//2 + (GRID_DIMENSION*self.direction.x)//2)//GRID_DIMENSION,
-            (aux_pixel_pos.y - MARGIN//2 + (GRID_DIMENSION*self.direction.y)//2)//GRID_DIMENSION
+            (aux_pixel_pos.x - MARGIN//2 + (GRID_DIMENSION*self.direction.x)//2)/GRID_DIMENSION,
+            (aux_pixel_pos.y - MARGIN//2 + (GRID_DIMENSION*self.direction.y)//2)/GRID_DIMENSION
         )
-        return not GRID.cells[int(aux_grid_pos.y)][int(aux_grid_pos.x)].wall
+
+        x_alignment = (aux_pixel_pos.x - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
+        y_alignment = (aux_pixel_pos.y - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
+        will_be_time_to_move = x_alignment == 0 and y_alignment == 0
+        next_pos_wall = GRID.cells[int(aux_grid_pos.y)][int(aux_grid_pos.x)].wall
+
+        return will_be_time_to_move or not next_pos_wall
 
     def draw(self):
         pass
 
     def time_to_move(self):
         x_alignment = (self.pixel_pos.x - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
-        y_alignment = (self.pixel_pos.y - MARGIN / 2 - GRID_DIMENSION/2) % GRID_DIMENSION
+        y_alignment = (self.pixel_pos.y - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
 
-        # só atualizar a direção caso o pacman esteja no quadradinho correto
-        return completed_current_square(x_alignment) and completed_current_square(y_alignment)
-
-    def almost_time_to_move(self):
-        x_alignment = (self.pixel_pos.x - MARGIN // 2 - GRID_DIMENSION//2) % GRID_DIMENSION
-        y_alignment = (self.pixel_pos.y - MARGIN / 2 - GRID_DIMENSION/2) % GRID_DIMENSION
-
-        # só atualizar a direção caso o pacman esteja no quadradinho correto
-        return completed_current_square(x_alignment, 1) and completed_current_square(y_alignment, 1)
+        # só atualizar a direção caso o pacman esteja bem central no quadradinho
+        return x_alignment == 0 and y_alignment == 0

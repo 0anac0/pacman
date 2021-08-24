@@ -17,8 +17,6 @@ class Player(Character):
         # só atualizar a direção caso o pacman esteja no quadradinho correto
         if self.time_to_move():
             self.direction = self.stored_direction
-        elif self.almost_time_to_move() and not self.allowed_movement():
-            self.direction = self.stored_direction
 
     def draw(self):
         pygame.draw.circle(self.app.screen, YELLOW, self.pixel_pos,  GRID_DIMENSION//2)

@@ -18,11 +18,6 @@ def draw_text(text, screen, size, color, font_name, pos, centered=True):
     screen.blit(text, (pos_x, pos_y))
 
 
-def completed_current_square(val, tolerance=0):
-    return val <= tolerance or abs(GRID_DIMENSION - val) <= tolerance
-
-
-
 def draw_grid_debug(screen):
     for x in range(WIDTH//GRID_DIMENSION):
         pygame.draw.line(

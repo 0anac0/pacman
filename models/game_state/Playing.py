@@ -33,7 +33,7 @@ class Playing(State):
     def draw(self):
         self.screen.fill(BLACK)
         self.screen.blit(BACKGROUND, (MARGIN//2, MARGIN//2))
-        GRID.draw()
+        GRID.draw(self.screen)
         draw_text('CURRENT SCORE: '+str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
         draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
         self.player.draw()

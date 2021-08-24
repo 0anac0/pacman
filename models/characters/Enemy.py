@@ -23,8 +23,6 @@ class Enemy(Character):
     def update_direction(self):
         if self.time_to_move():
             self.calculate_direction()
-        elif self.almost_time_to_move() and not self.allowed_movement():
-            self.calculate_direction()
 
     def calculate_direction(self):
         #pdb.set_trace()

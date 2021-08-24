@@ -14,16 +14,15 @@ class Grid:
         self.rows = len(self.cells[0])
         self.load_cells_neighbors()
 
+    def draw(self, screen):
+        self.draw_coins(3, screen)
 
-    def draw(self):
-        self.draw_coins(3)
-
-    def draw_coins(self, coin_radio):
+    def draw_coins(self, coin_radio, screen):
         for coin in self.coins:
             pygame.draw.circle(
-                BACKGROUND, WHITE,
-                (coin.x * GRID_DIMENSION + coin_radio / 2 + GRID_DIMENSION // 2,
-                 coin.y * GRID_DIMENSION + coin_radio / 2 + GRID_DIMENSION // 2),
+                screen, WHITE,
+                (coin.x * GRID_DIMENSION + MARGIN//2 +coin_radio / 2 + GRID_DIMENSION // 2,
+                 coin.y * GRID_DIMENSION + MARGIN//2 + coin_radio / 2 + GRID_DIMENSION // 2),
                 coin_radio
             )
 
@@ -42,7 +41,7 @@ class Grid:
                 self.cells.append(arr)
 
     def load_cells_neighbors(self):
-       for i in range(self.cols):
+        for i in range(self.cols):
             for j in range(self.rows):
                 self.cells[i][j].add_neighbors(self.cells)
 
