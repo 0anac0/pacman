@@ -4,7 +4,7 @@ from models.characters.Character import Character
 
 class Player(Character):
     def __init__(self, app, pos):
-        super().__init__(app=app, pos=pos)
+        super().__init__(app=app, pos=pos, speed=2)
         self.stored_direction = self.direction
 
     def move(self, direction):
@@ -20,7 +20,7 @@ class Player(Character):
 
     def draw(self):
         pygame.draw.circle(self.app.screen, YELLOW, self.pixel_pos,  GRID_DIMENSION//2)
-        # self.draw_grid_pos()
+        #self.draw_grid_pos()
         pygame.display.update()
 
     def draw_grid_pos(self):

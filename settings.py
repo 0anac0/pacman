@@ -16,6 +16,8 @@ RED = (255, 0, 0)
 GRAY = (110, 110, 110)
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
+LIGHT_YELLOW = (255, 255, 150)
+CYAN = (0, 200, 200)
 
 # fontes
 START_FONT = 'arial black'

@@ -69,7 +69,6 @@ class Grid:
 
         while not finished:
             if len(openSet) <= 0:
-                print('não há caminho :(')
                 finished = True
                 break
 

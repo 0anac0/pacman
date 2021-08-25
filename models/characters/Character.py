@@ -4,12 +4,13 @@ from helper import *
 
 
 class Character:
-    def __init__(self, app, pos):
+    def __init__(self, app, pos, speed=0.5):
         self.app = app
         self.grid_pos = pos
         self.direction = vec(0, 0)
         self.stored_direction = self.direction
         self.pixel_pos = self.get_pixel_pos()
+        self.speed = speed
 
     def get_pixel_pos(self):
         return vec(
@@ -22,7 +23,7 @@ class Character:
 
     def update(self):
         self.update_direction()
-        aux_pixel_pos = self.pixel_pos + self.direction
+        aux_pixel_pos = self.pixel_pos + self.direction*self.speed
         aux_grid_pos = vec(
             (aux_pixel_pos.x - MARGIN//2)//GRID_DIMENSION,
             (aux_pixel_pos.y - MARGIN//2)//GRID_DIMENSION
@@ -32,7 +33,7 @@ class Character:
             self.grid_pos = aux_grid_pos
 
     def allowed_movement(self):
-        aux_pixel_pos = self.pixel_pos + self.direction
+        aux_pixel_pos = self.pixel_pos + self.direction*self.speed
         aux_grid_pos = vec(
             (aux_pixel_pos.x - MARGIN//2 + (GRID_DIMENSION*self.direction.x)//2)/GRID_DIMENSION,
             (aux_pixel_pos.y - MARGIN//2 + (GRID_DIMENSION*self.direction.y)//2)/GRID_DIMENSION

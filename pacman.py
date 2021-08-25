@@ -3,6 +3,8 @@ from helper import *
 from models.game_state.Start import Start
 from models.characters.Player import Player
 from models.characters.Enemy import Enemy
+from models.characters.EnemyFrightened import EnemyFrightened
+from models.characters.EnemyRegular import EnemyRegular
 pygame.init()
 vec = pygame.math.Vector2
 
@@ -14,8 +16,9 @@ class App:
         self.running = True
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
-        self.enemies = [Enemy(self, vec(20, 1))]
-        #self.enemies = []
+        self.enemies = [Enemy(self, vec(20, 1)), EnemyFrightened(self, vec(1, 1)), EnemyRegular(self, vec(24, 1))]
+        self.mode = 'scatter'
+        # self.enemies = []
         self.current_score = 0
 
     def increase_score(self, score):
