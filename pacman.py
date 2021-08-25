@@ -2,6 +2,7 @@ import sys
 import random
 from helper import *
 from models.game_state.Start import Start
+from models.game_state.GameOver import GameOver
 from models.characters.Player import Player
 from models.characters.Enemy import Enemy
 from models.characters.EnemyFrightened import EnemyFrightened
@@ -24,6 +25,9 @@ class App:
         self.mode = 'scatter'
         self.current_score = 0
         self.high_score = 0
+
+    def game_over(self, lost=True):
+        self.state=GameOver(self, lost)
 
     def reset_high_score(self):
         if self.current_score > self.high_score:

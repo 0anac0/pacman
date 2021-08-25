@@ -6,9 +6,13 @@ import pygame
 
 
 class GameOver(State):
-    def __init__(self, app):
+    def __init__(self, app, lost=True):
         super().__init__(app=app)
         self.app.reset_high_score()
+        if lost:
+            self.message = 'GAME OVER'
+        else:
+            self.message = 'CONGRATULATIONS'
 
     def events(self):
         for event in pygame.event.get():
@@ -26,7 +30,7 @@ class GameOver(State):
         self.app.screen.fill(BLACK)
 
         texts = [
-            ['GAME OVER', (200, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 200)],
+            [self.message, (200, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 200)],
             ['YOUR SCORE: ' + str(self.app.current_score), (30, 70, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 170)],
             ['HIGH SCORE: ' + str(self.app.high_score), (30, 70, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 150)],
             ['APERTE ESPAÇO PARA INICIAR NOVAMENTE', (170, 130, 80), (WIDTH / 2 + MARGIN//2, HEIGHT / 2)],

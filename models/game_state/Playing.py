@@ -46,6 +46,9 @@ class Playing(State):
             if flee_mode_coin_activated:
                 self.app.mode = 'flee'
 
+        if len(GRID.coins) <= 0:
+            self.app.game_over(lost=False)
+
     def draw(self):
         self.screen.fill(BLACK)
         self.screen.blit(BACKGROUND, (MARGIN//2, MARGIN//2))
@@ -60,7 +63,7 @@ class Playing(State):
     def draw_gui(self):
         draw_text('CURRENT SCORE: ' + str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
                   (WIDTH // 3, 14), True)
-        draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2 * WIDTH // 3 - 24, 6), False)
+        draw_text('HIGH SCORE: ' + str(self.app.high_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2 * WIDTH // 3 - 24, 6), False)
         draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
                   (WIDTH / 2 + MARGIN / 2, HEIGHT + MARGIN / 2 + 10), True)
         draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
