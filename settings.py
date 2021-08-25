@@ -26,3 +26,4 @@ START_TEXT_SIZE = 28
 
 # background
 BACKGROUND = pygame.transform.scale(pygame.image.load('maze.png'), (WIDTH, HEIGHT))
+

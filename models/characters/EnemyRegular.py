@@ -25,9 +25,6 @@ class EnemyRegular(Enemy):
     def scatter_target(self):
         return self._scatter_target
 
-    def chase_target(self):
-        return self.flee_target()
-
     def check_if_target_out_of_path(self, target):
         target_cell = GRID.cells[int(target.y)][int(target.x)]
         if self.app.mode == 'scatter':

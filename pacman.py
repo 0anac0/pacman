@@ -1,4 +1,5 @@
 import sys
+import random
 from helper import *
 from models.game_state.Start import Start
 from models.characters.Player import Player
@@ -17,9 +18,19 @@ class App:
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
         self.enemies = [Enemy(self, vec(20, 1)), EnemyFrightened(self, vec(1, 1)), EnemyRegular(self, vec(24, 1))]
+
+        self.timer_event = pygame.USEREVENT + 1
+        pygame.time.set_timer(self.timer_event, 20000)
         self.mode = 'scatter'
-        # self.enemies = []
         self.current_score = 0
+
+    def reset_mode(self):
+        possible_modes = ['scatter', 'chase']
+        if self.mode in possible_modes:
+            possible_modes.remove(self.mode)
+
+        chosen_index = random.randint(0, len(possible_modes)-1)
+        self.mode = possible_modes[chosen_index]
 
     def increase_score(self, score):
         self.current_score += score

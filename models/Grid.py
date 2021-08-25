@@ -5,6 +5,7 @@ from settings import *
 class Grid:
     def __init__(self, base_file):
         self.coins = []
+        self.flee_coins = []
         self.cells = []
         self.load_grid(base_file)
 
@@ -14,6 +15,16 @@ class Grid:
 
     def draw(self, screen):
         self.draw_coins(3, screen)
+        self.draw_flee_coins(6, screen)
+
+    def draw_flee_coins(self, coin_radio, screen):
+        for coin in self.flee_coins:
+            pygame.draw.circle(
+                screen, WHITE,
+                (coin.x * GRID_DIMENSION + MARGIN // 2 + coin_radio / 2 + GRID_DIMENSION // 2,
+                 coin.y * GRID_DIMENSION + MARGIN // 2 + coin_radio / 2 + GRID_DIMENSION // 2),
+                coin_radio
+            )
 
     def draw_coins(self, coin_radio, screen):
         for coin in self.coins:
@@ -34,6 +45,8 @@ class Grid:
                         wall = True
                     elif char == 'C':
                         self.coins.append(vec(x_ind, y_ind))
+                    elif char == 'F':
+                        self.flee_coins.append(vec(x_ind, y_ind))
                     if char != '\n':
                         arr.append(GridCell(x_ind, y_ind, wall))
                 self.cells.append(arr)
@@ -47,6 +60,13 @@ class Grid:
         coin_consumed = False
         if pos in self.coins:
             self.coins.remove(pos)
+            coin_consumed = True
+        return coin_consumed
+
+    def check_flee_coins(self, pos):
+        coin_consumed = False
+        if pos in self.flee_coins:
+            self.flee_coins.remove(pos)
             coin_consumed = True
         return coin_consumed
 

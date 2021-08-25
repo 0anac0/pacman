@@ -44,14 +44,20 @@ class Enemy(Character):
     def calculate_path(self, target):
         self.path = GRID.a_estrela(target, self.grid_pos)
 
+    def draw_eyes(self, color):
+        pygame.draw.circle(self.app.screen, color, (self.pixel_pos.x - 3, self.pixel_pos.y),  3)
+        pygame.draw.circle(self.app.screen, color, (self.pixel_pos.x + 3, self.pixel_pos.y),  3)
+
     def draw(self):
-        pygame.draw.circle(self.app.screen, self.color, self.pixel_pos,  GRID_DIMENSION*1.4//3)
-        pygame.draw.circle(self.app.screen, self.eye_color, (self.pixel_pos.x - 3, self.pixel_pos.y),  3)
-        pygame.draw.circle(self.app.screen, self.eye_color, (self.pixel_pos.x + 3, self.pixel_pos.y),  3)
-        pygame.draw.rect(
-            self.app.screen, self.color,
-            (self.pixel_pos.x - (GRID_DIMENSION*1.4//3), self.pixel_pos.y, GRID_DIMENSION/1.1,  GRID_DIMENSION//2)
-        )
+        if self.app.mode == 'flee':
+            self.draw_eyes(WHITE)
+        else:
+            pygame.draw.circle(self.app.screen, self.color, self.pixel_pos,  GRID_DIMENSION*1.4//3)
+            self.draw_eyes(self.eye_color)
+            pygame.draw.rect(
+                self.app.screen, self.color,
+                (self.pixel_pos.x - (GRID_DIMENSION*1.4//3), self.pixel_pos.y, GRID_DIMENSION/1.1,  GRID_DIMENSION//2)
+            )
         pygame.display.update()
 
     def update_direction(self):

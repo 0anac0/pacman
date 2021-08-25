@@ -21,6 +21,8 @@ class Playing(State):
                     self.player.move(vec(0, -1))
                 elif event.key == pygame.K_DOWN:
                     self.player.move(vec(0, 1))
+            if event.type == self.app.timer_event:
+                self.app.reset_mode()
 
     def update(self):
         self.player.update()
@@ -29,6 +31,10 @@ class Playing(State):
         coin_gained = GRID.check_coins(self.player.grid_pos)
         if coin_gained:
             self.app.increase_score(10)
+        if self.app.mode != 'flee':
+            flee_mode_coin_activated = GRID.check_flee_coins(self.player.grid_pos)
+            if flee_mode_coin_activated:
+                self.app.mode = 'flee'
 
     def draw(self):
         self.screen.fill(BLACK)
@@ -36,6 +42,7 @@ class Playing(State):
         GRID.draw(self.screen)
         draw_text('CURRENT SCORE: '+str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
         draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
+        draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH/2 + MARGIN/2, HEIGHT + MARGIN/2 + 10), True)
         self.player.draw()
         # draw_grid_cells()
         for enemy in self.app.enemies:
