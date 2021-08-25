@@ -15,7 +15,7 @@ class Player(Character):
         self.lifes -= 1
         if self.lifes <= 0:
             self.lifes = 0
-            self.app.update_state(GameOver(self.app), lost=True)
+            self.app.update_state(GameOver(self.app, lost=True))
 
     def update_direction(self):
         if self.stored_direction == self.direction or self.stored_direction is None:
