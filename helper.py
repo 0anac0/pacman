@@ -6,6 +6,15 @@ from models.Grid import Grid
 GRID = Grid('grid.txt')
 
 
+def draw_pacman(screen, center_pos, mouth_coords=False):
+    if not mouth_coords:
+        mouth_coords = [
+                center_pos,
+                (center_pos.x + GRID_DIMENSION//2, center_pos.y - GRID_DIMENSION//2),
+                (center_pos.x + GRID_DIMENSION//2, center_pos.y + GRID_DIMENSION//2)]
+    pygame.draw.circle(screen, YELLOW, center_pos, GRID_DIMENSION // 2)
+    pygame.draw.polygon(screen, BLACK, points=mouth_coords)
+
 def draw_text(text, screen, size, color, font_name, pos, centered=True):
     font = pygame.font.SysFont(font_name, size)
     text = font.render(text, False, color)

@@ -4,13 +4,17 @@ from helper import *
 
 
 class Character:
-    def __init__(self, app, pos, speed=0.5):
+    def __init__(self, app, pos, speed=0.5, lifes=1):
         self.app = app
         self.grid_pos = pos
         self.direction = vec(0, 0)
         self.stored_direction = self.direction
         self.pixel_pos = self.get_pixel_pos()
         self.speed = speed
+        self.lifes = lifes
+
+    def check_collision(self, other_character):
+        return self.grid_pos == other_character.grid_pos
 
     def get_pixel_pos(self):
         return vec(

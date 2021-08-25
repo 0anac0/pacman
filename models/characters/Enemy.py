@@ -8,6 +8,12 @@ class Enemy(Character):
         self.color = color
         self.path = []
         self.eye_color = eye_color
+        self.initial_pos = self.grid_pos
+
+    def reset_initial_position(self):
+        self.grid_pos = self.initial_pos
+        self.pixel_pos = self.get_pixel_pos()
+        self.calculate_path(self.target())
 
     def target(self):
         if self.app.mode == 'scatter':

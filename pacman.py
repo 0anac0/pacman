@@ -17,12 +17,16 @@ class App:
         self.running = True
         self.state = Start(self)
         self.player = Player(self, PLAYER_START_POS)
-        self.enemies = [Enemy(self, vec(20, 1)), EnemyFrightened(self, vec(1, 1)), EnemyRegular(self, vec(24, 1))]
+        self.enemies = [Enemy(self, vec(14, 11)), EnemyFrightened(self, vec(10, 11)), EnemyRegular(self, vec(10, 17))]
 
         self.timer_event = pygame.USEREVENT + 1
         pygame.time.set_timer(self.timer_event, 20000)
         self.mode = 'scatter'
         self.current_score = 0
+
+    def reset_enemies_positions(self):
+        for enemy in self.enemies:
+            enemy.reset_initial_position()
 
     def reset_mode(self):
         possible_modes = ['scatter', 'chase']

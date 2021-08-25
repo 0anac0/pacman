@@ -27,7 +27,12 @@ class Playing(State):
     def update(self):
         self.player.update()
         for enemy in self.app.enemies:
+            if enemy.check_collision(self.player):
+                self.player.loose_life()
+                self.player.lifes -= 1
+                self.app.reset_enemies_positions()
             enemy.update()
+
         coin_gained = GRID.check_coins(self.player.grid_pos)
         if coin_gained:
             self.app.increase_score(10)
@@ -40,11 +45,21 @@ class Playing(State):
         self.screen.fill(BLACK)
         self.screen.blit(BACKGROUND, (MARGIN//2, MARGIN//2))
         GRID.draw(self.screen)
-        draw_text('CURRENT SCORE: '+str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH//3, 14), True)
-        draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2*WIDTH//3 - 24, 6), False)
-        draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (WIDTH/2 + MARGIN/2, HEIGHT + MARGIN/2 + 10), True)
+        self.draw_gui()
         self.player.draw()
         # draw_grid_cells()
         for enemy in self.app.enemies:
             enemy.draw()
         pygame.display.update()
+
+    def draw_gui(self):
+        draw_text('CURRENT SCORE: ' + str(self.app.current_score), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
+                  (WIDTH // 3, 14), True)
+        draw_text('HIGH SCORE: 0', self.screen, GUI_TEXT_SIZE, WHITE, START_FONT, (2 * WIDTH // 3 - 24, 6), False)
+        draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
+                  (WIDTH / 2 + MARGIN / 2, HEIGHT + MARGIN / 2 + 10), True)
+        draw_text(self.app.mode.upper(), self.screen, GUI_TEXT_SIZE, WHITE, START_FONT,
+                  (WIDTH / 2 + MARGIN / 2, HEIGHT + MARGIN / 2 + 10), True)
+
+        for i in range(self.app.player.lifes):
+            draw_pacman(self.app.screen, vec(MARGIN/2 + 30*i , HEIGHT + MARGIN//2 + GRID_DIMENSION//2))
