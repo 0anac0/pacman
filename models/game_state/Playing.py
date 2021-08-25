@@ -29,8 +29,8 @@ class Playing(State):
         for enemy in self.app.enemies:
             if enemy.check_collision(self.player):
                 self.player.loose_life()
-                self.player.lifes -= 1
                 self.app.reset_enemies_positions()
+
             enemy.update()
 
         coin_gained = GRID.check_coins(self.player.grid_pos)

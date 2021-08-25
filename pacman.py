@@ -23,6 +23,20 @@ class App:
         pygame.time.set_timer(self.timer_event, 20000)
         self.mode = 'scatter'
         self.current_score = 0
+        self.high_score = 0
+
+    def reset_high_score(self):
+        if self.current_score > self.high_score:
+            self.high_score = self.current_score
+
+    def reset_game(self):
+        self.current_score = 0
+        self.reset_mode()
+        self.reset_enemies_positions()
+        self.player.lifes = 3
+
+        for enemy in self.enemies:
+            enemy.lifes = 1
 
     def reset_enemies_positions(self):
         for enemy in self.enemies:
