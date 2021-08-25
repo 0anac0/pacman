@@ -28,8 +28,13 @@ class Playing(State):
         self.player.update()
         for enemy in self.app.enemies:
             if enemy.check_collision(self.player):
-                self.player.loose_life()
-                self.app.reset_enemies_positions()
+                if self.app.mode == 'flee':
+                    if enemy.lifes > 0:
+                        enemy.loose_life()
+                        self.app.increase_score(200)
+                else:
+                    self.player.loose_life()
+                    self.app.reset_enemies_positions()
 
             enemy.update()
 

@@ -8,12 +8,12 @@ class Enemy(Character):
         self.color = color
         self.path = []
         self.eye_color = eye_color
-        self.initial_pos = self.grid_pos
 
-    def reset_initial_position(self):
-        self.grid_pos = self.initial_pos
-        self.pixel_pos = self.get_pixel_pos()
-        self.calculate_path(self.target())
+    def loose_life(self):
+        if self.lifes > 0:
+            self.lifes -= 1
+            self.reset_initial_position()
+            self.calculate_path(self.target())
 
     def target(self):
         if self.app.mode == 'scatter':
@@ -55,15 +55,21 @@ class Enemy(Character):
         pygame.draw.circle(self.app.screen, color, (self.pixel_pos.x + 3, self.pixel_pos.y),  3)
 
     def draw(self):
-        if self.app.mode == 'flee':
+        if self.app.mode == 'flee' and self.lifes <= 0:
             self.draw_eyes(WHITE)
         else:
-            pygame.draw.circle(self.app.screen, self.color, self.pixel_pos,  GRID_DIMENSION*1.4//3)
-            self.draw_eyes(self.eye_color)
+            if self.app.mode == 'flee':
+                color = DARK_BLUE
+                eye_color = WHITE
+            else:
+                color = self.color
+                eye_color = self.eye_color
+            pygame.draw.circle(self.app.screen, color, self.pixel_pos,  GRID_DIMENSION*1.4//3)
             pygame.draw.rect(
-                self.app.screen, self.color,
+                self.app.screen, color,
                 (self.pixel_pos.x - (GRID_DIMENSION*1.4//3), self.pixel_pos.y, GRID_DIMENSION/1.1,  GRID_DIMENSION//2)
             )
+            self.draw_eyes(eye_color)
         pygame.display.update()
 
     def update_direction(self):

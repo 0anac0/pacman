@@ -16,6 +16,7 @@ class GameOver(State):
                 self.app.update_running(False)
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 self.app.reset_game()
+                GRID.load_grid_from_file()
                 self.app.update_state(Playing(self.app))
 
     def update(self):

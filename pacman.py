@@ -33,6 +33,7 @@ class App:
         self.current_score = 0
         self.reset_mode()
         self.reset_enemies_positions()
+        self.player.reset_initial_position()
         self.player.lifes = 3
 
         for enemy in self.enemies:
@@ -42,6 +43,10 @@ class App:
         for enemy in self.enemies:
             enemy.reset_initial_position()
 
+    def reset_enemies_lifes(self):
+        for enemy in self.enemies:
+            enemy.lifes = 1
+
     def reset_mode(self):
         possible_modes = ['scatter', 'chase']
         if self.mode in possible_modes:
@@ -49,6 +54,7 @@ class App:
 
         chosen_index = random.randint(0, len(possible_modes)-1)
         self.mode = possible_modes[chosen_index]
+        self.reset_enemies_lifes()
 
     def increase_score(self, score):
         self.current_score += score

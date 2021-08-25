@@ -7,7 +7,8 @@ class Grid:
         self.coins = []
         self.flee_coins = []
         self.cells = []
-        self.load_grid(base_file)
+        self.base_file = base_file
+        self.load_grid()
 
         self.cols = len(self.cells)
         self.rows = len(self.cells[0])
@@ -35,8 +36,14 @@ class Grid:
                 coin_radio
             )
 
-    def load_grid(self, base_file):
-        with open(file=base_file, mode='r') as file:
+    def load_grid(self):
+        self.cells = self.load_grid_from_file()
+
+    def load_grid_from_file(self):
+        new_cells = []
+        self.coins = []
+        self.flee_coins = []
+        with open(file=self.base_file, mode='r') as file:
             for y_ind, line in enumerate(file):
                 arr = []
                 for x_ind, char in enumerate(line):
@@ -49,7 +56,8 @@ class Grid:
                         self.flee_coins.append(vec(x_ind, y_ind))
                     if char != '\n':
                         arr.append(GridCell(x_ind, y_ind, wall))
-                self.cells.append(arr)
+                new_cells.append(arr)
+        return new_cells
 
     def load_cells_neighbors(self):
         for i in range(self.cols):

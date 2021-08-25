@@ -1,5 +1,3 @@
-import pdb
-
 from helper import *
 
 
@@ -7,11 +5,16 @@ class Character:
     def __init__(self, app, pos, speed=0.5, lifes=1):
         self.app = app
         self.grid_pos = pos
+        self.initial_pos = self.grid_pos
         self.direction = vec(0, 0)
         self.stored_direction = self.direction
         self.pixel_pos = self.get_pixel_pos()
         self.speed = speed
         self.lifes = lifes
+
+    def reset_initial_position(self):
+        self.grid_pos = self.initial_pos
+        self.pixel_pos = self.get_pixel_pos()
 
     def check_collision(self, other_character):
         return self.grid_pos == other_character.grid_pos
