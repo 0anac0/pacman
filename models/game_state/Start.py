@@ -24,8 +24,8 @@ class Start(State):
 
         texts = [
             ['INTELIGENCIA COMPUTACIONAL APLICADA A JOGOS', DARK_BLUE, (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 200)],
-            ['ANA CLAUDIA', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 170)],
-            ['2021.1', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 150)],
+            ['PROGRAMAÇÃO ORIENTADA A OBJETOS', DARK_BLUE, (WIDTH / 2 + MARGIN // 2, HEIGHT / 2 - 170)],
+            ['ANA CLAUDIA', (30, 100, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 - 150)],
             ['APERTE ESPAÇO PARA INICIAR', LIGHT_YELLOW, (WIDTH / 2 + MARGIN//2, HEIGHT / 2)],
             ['SOMENTE 1 JOGADOR', (30, 70, 130), (WIDTH / 2 + MARGIN//2, HEIGHT / 2 + 50)],
         ]
